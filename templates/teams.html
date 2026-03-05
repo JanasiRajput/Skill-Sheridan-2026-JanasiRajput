@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/style.css">
+<title>Teams List</title>
+</head>
+<body class="bg-dark text-white">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Robotics Championship 2026</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+        <li class="nav-item"><a class="nav-link" href="/teams">Team List</a></li>
+        <li class="nav-item"><a class="nav-link" href="/gallery">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="/feedback">Feedback</a></li>
+        <li class="nav-item"><a class="nav-link" href="/results">Results</a></li>
+        <li class="nav-item"><a class="nav-link" href="/admin/login">Admin</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="container my-5">
+  <h2 class="text-center mb-4">Registered Teams</h2>
+
+  {% if teams %}
+    <div class="table-responsive">
+    <table class="table table-dark table-striped text-center align-middle">
+      <thead class="table-info text-dark">
+        <tr>
+          <th>#</th>
+          <th>Team Name</th>
+          <th>Leader Name</th>
+          <th>Leader Email</th>
+          <th>Student ID</th>
+          <th>Status</th>
+          <th>Registered At</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for team in teams %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ team.team_name }}</td>
+            <td>{{ team.name }}</td>
+            <td>{{ team.email }}</td>
+            <td>{{ team.student_id }}</td>
+            <td>{{ team.status }}</td>
+            <td>{{ team.timestamp.strftime('%Y-%m-%d %H:%M:%S') if team.timestamp else 'N/A' }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  {% else %}
+    <p class="text-center text-light">No teams registered yet.</p>
+  {% endif %}
+
+</section>
+
+<footer class="bg-secondary text-center py-3">
+  <p>&copy; 2026 Robotics Championship | Designed by Janasi Rajput</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
